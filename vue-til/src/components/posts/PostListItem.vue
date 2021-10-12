@@ -7,7 +7,7 @@
       {{ postItem.contents }}
     </div>
     <div class="post-time">
-      {{ postItem.createdAt }}
+      {{ postItem.createdAt | formatDate }}
       <i class="icon ion-md-create" @click="routeEditPage"></i>
       <i class="icon ion-md-trash" @click="deleteItem"></i>
     </div>
@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { deletePost } from '@/api/posts.js';
-
+import { deletePost } from '@/api/posts';
 export default {
   props: {
     postItem: {
@@ -24,6 +23,11 @@ export default {
       required: true,
     },
   },
+  // filters: {
+  //   formatData(value) {
+  //     return new Date(value);
+  //   },
+  // },
   methods: {
     async deleteItem() {
       if (confirm('You want to delete it?')) {
@@ -35,7 +39,6 @@ export default {
     routeEditPage() {
       const id = this.postItem._id;
       this.$router.push(`/post/${id}`);
-      // console.log('edit');
     },
   },
 };

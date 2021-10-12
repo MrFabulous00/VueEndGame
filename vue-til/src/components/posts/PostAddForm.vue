@@ -28,6 +28,7 @@
 
 <script>
 import { createPost } from '@/api/posts';
+
 export default {
   data() {
     return {
